@@ -1,20 +1,46 @@
-// Task2.cpp : This file contains the 'main' function. Program execution begins and ends there.
-//
-
+// Example program
 #include <iostream>
+#include <string>
+
+float lenght(float x1, float y1, float x2, float y2)
+{
+    return sqrt(pow(x1 - x2, 2) + pow(y1 - y2, 2));
+}
+
+bool existanceOfATriangle(float x1, float y1, float x2, float y2, float x3, float y3)
+{
+
+    float c = lenght(x1, y1, x2, y2);
+    float b = lenght(x1, y1, x3, y3);
+    float a = lenght(x2, y2, x3, y3);
+    if (c + b > a && a + b > c && c + a > b)
+    {
+        return true;
+    }
+    else
+    {
+        return false;
+    }
+}
 
 int main()
 {
-    std::cout << "Hello World!\n";
+    float x1, y1, x2, y2, x3, y3;
+    std::cout << "input x1,y1,x2,y2,x3,y3 separated with space symbols: ";
+    std::cin >> x1 >> y1 >> x2 >> y2 >> x3 >> y3;
+    bool ex = existanceOfATriangle(x1, y1, x2, y2, x3, y3);
+    if (ex) {
+
+        float c = lenght(x1, y1, x2, y2);
+        float b = lenght(x1, y1, x3, y3);
+        float a = lenght(x2, y2, x3, y3);
+
+        float p = (c + b + a) / 2;
+        std::cout << sqrt(p * (p - a) * (p - b) * (p - c));
+
+    }
+    else {
+        std::cout << "Such a triangle cannot exist";
+    }
 }
 
-// Run program: Ctrl + F5 or Debug > Start Without Debugging menu
-// Debug program: F5 or Debug > Start Debugging menu
-
-// Tips for Getting Started: 
-//   1. Use the Solution Explorer window to add/manage files
-//   2. Use the Team Explorer window to connect to source control
-//   3. Use the Output window to see build output and other messages
-//   4. Use the Error List window to view errors
-//   5. Go to Project > Add New Item to create new code files, or Project > Add Existing Item to add existing code files to the project
-//   6. In the future, to open this project again, go to File > Open > Project and select the .sln file
